@@ -1,36 +1,46 @@
-var list = ["serendipity", "heathen", "saperlipopette", "tadpole", "pangram", "abracadabra", "flabbergasted"];
-var wordToGuess = list[Math.floor(Math.random() * list.length)];
-var hiddenWord = []
-var points = 7
+// Variables
+
+let list = ["serendipity", "heathen", "tadpole", "pangram", "abracadabra", "flabbergasted"];
+let wordToGuess = list[Math.floor(Math.random() * list.length)];
+let hiddenWord = []
+let points = 7
+
+// Functions
 
 function secretWord() {
     for (let i=0; i<wordToGuess.length; i++){
         hiddenWord[i] = " _ ";
     } alert(hiddenWord.join(""))
 }
-secretWord();
 
-var letter = prompt("Choose a letter:");
-
-function playerGuess() {
+function askPlayerLetter() {
+    let letter = prompt("Choose a letter:");
     while (letter.length != 1){
-    letter = prompt("Choose a letter:");
-    }
+        letter = prompt("Choose a letter:");
+    } return letter;
 }
 
 function checkAnswer() {
     for (let i=0; i<wordToGuess.length; i++){
-        if (letter == wordToGuess[i]){
-            hiddenWord[i] = letter
-        } 
-    }alert(hiddenWord.join("") + points--);
-}
+        if (playerLetter == wordToGuess[i]){
+            hiddenWord[i] = playerLetter
+        }
+    }
+    wordToGuess.includes(playerLetter)? points : points--;
+    i = 0 ;
+    return alert(hiddenWord.join("") + "\nYou still have " + points + " chance(s).");
+} 
 
+// Game
 
-while (points != 0 || hiddenWord.includes(" _ ")){
-    letter = prompt("Choose a letter:");
-    playerGuess();
+secretWord();
+
+while (points != 0 && hiddenWord.includes(" _ ")){
+    var playerLetter = askPlayerLetter();
     checkAnswer();
 }
+
+points === 0 ? alert("You lost") : alert("Congratulations you win");
+
 
 
