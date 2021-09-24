@@ -1,8 +1,9 @@
 // Variables
 
 let list = ["SERENDIPITY", "HEATHEN", "TADPOLE", "PANGRAM", "ABRACADABRA", "FLABBERGASTED"];
-let hiddenWord = []
-let points = 7
+let hiddenWord = [];
+let usedLetters = [];
+let points = 7;
 
 // Functions
 
@@ -19,26 +20,30 @@ function secretWord() {
 }
 
 function askPlayerLetter() {
-    let letter = prompt("Choose a letter:");
+    let letter = prompt(`Choose a letter.\nBe careful to not choose one you have already checked, otherwise you will lose a chance:\n${usedLetters}`);
     if (letter === null){ // if player clicked on cancel's button, function stops there, player will be redirect to dashboard 
         return null; // first step
     }
     while (letter.length != 1){ // check if the player enters one letter only
-        letter = prompt("Choose a letter:");
-    } return letter;
+        letter = prompt(`Choose a letter.\nBe careful to not choose one you have already checked, otherwise you will lose a chance:\n${usedLetters}`);
+    } return letter.toUpperCase();
 }
 
 function checkAnswer() {
-    for (let i=0; i<wordToGuess.length; i++){ // check if the letter chosen by the player is in the word, 
-        if (playerLetter.toUpperCase() == wordToGuess[i]){ // if yes, all the underscores where the letter occurs are replaced by it
-            hiddenWord[i] = playerLetter.toUpperCase();
+    if (usedLetters.includes(` ${playerLetter} `)){ // check if the player chooses a letter already checked
+        points--; // if yes, even if it was a letter in the word to guess he loses one point
+    } else {
+        usedLetters.push(` ${playerLetter} `); // if not the letter is add to the variable keeping check of already used letters
+        for (let i=0; i<wordToGuess.length; i++){ // check if the letter chosen by the player is in the word, 
+            if (playerLetter == wordToGuess[i]){ // if yes, all the underscores where the letter occurs are replaced by it
+                hiddenWord[i] = playerLetter;
+            }
         }
+        wordToGuess.includes(playerLetter)? points : points--;
     }
-    wordToGuess.includes(playerLetter.toUpperCase())? points : points--;
     i = 0 ;
     return alert(`${hiddenWord.join("")}\nYou still have ${points} chance(s).`);
 } 
-
 
 // Game
 
@@ -59,14 +64,15 @@ switch (val) {
                 points === 0; // second step
                 break;
             }
-            checkAnswer();  
+            checkAnswer();
         }
         if (playerLetter === null){ // if the player has clicked on cancel's button previously, he will go back to dashboard, final step
             alert("Coward!")
         } else {
             points === 0 ? alert("You have been hanged.\nGAME OVER") : alert("Congratulations you have found the password.\nYour neck is safe for now.");
         }
-        hiddenWord = [] // reset the variables
+        hiddenWord = [] // reset the variables to start
+        usedLetters = []
         points = 7;
         break;
     case "Q": // quit the game
