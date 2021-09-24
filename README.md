@@ -7,7 +7,7 @@ There is a dashboard with 3 possibilities:
 * "R" to check the rules.
 * "S" to start the game.
 * "Q" to quit the game.
-If the player clicks on cancel's button it will be eqaul to a "Q".
+If the player clicks on cancel's button it will be equal to a "Q".
 
 
 ## The game
