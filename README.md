@@ -3,8 +3,8 @@
 
 The game is case-insensitive.
 
-There is a dashboard with 3 possibilities:
-* "R" to checks the rules.
+There is a dashboard with 3 possibilities:  
+* "R" to check the rules.
 * "S" to start the game.
 * "Q" to quit the game.
 If the player clicks on cancel's button it will be eqaul to a "Q".
@@ -14,7 +14,7 @@ If the player clicks on cancel's button it will be eqaul to a "Q".
 
 
 1. The computer chooses a word randomly in a list and hides it by replacing each letter with an underscore.
-2. The player tries to guess the word by suggesting one and only one letter. If there are more than one character or none, the player will be ask again to enter a letter.
+2. The player tries to guess the word by suggesting one and only one letter. He gets 7 chances. If there are more than one character or none, the player will be ask again to enter a letter.
 If the letter chosen has already been chosen previously in the game, the player will lose one point even if the letter occurs in the word to guess. The previous letters will be display on the screen.
 The computer doesn't check if the player entered a letter or a special character like "/", ":", "%"... or a space.
 Since all of the words in the list contain only letters, the player will lose one point if the character he entered is not a letter.
