@@ -1,6 +1,22 @@
 // Variables
 
-let list = ["SERENDIPITY", "HEATHEN", "TADPOLE", "PANGRAM", "ABRACADABRA", "FLABBERGASTED", "UNINTENTIONNALY", "WHOOPS", "HALLELUJAH", "BINGO", "OUCH", "YUMMY", "AWESOME", "TYRANNOSAURUS", "DRAGONFLY"];
+let list = [
+    "SERENDIPITY",
+    "HEATHEN",
+    "TADPOLE",
+    "PANGRAM",
+    "ABRACADABRA",
+    "FLABBERGASTED",
+    "UNINTENTIONNALY",
+    "WHOOPS",
+    "HALLELUJAH",
+    "BINGO",
+    "OUCH",
+    "YUMMY",
+    "AWESOME",
+    "TYRANNOSAURUS",
+    "DRAGONFLY"
+];
 let hiddenWord = [];
 let usedLetters = [];
 let points = 7;
@@ -15,7 +31,6 @@ function secretWord() {
     for (let i=0; i<wordToGuess.length; i++){
         hiddenWord[i] = " _ "; // transform the chosen word in underscore
     }
-    i = 0;
     alert(`The password is: ${hiddenWord.join("")}`);
 }
 
@@ -35,13 +50,12 @@ function checkAnswer() {
     } else {
         usedLetters.push(` ${playerLetter} `); // if not the letter is add to the variable keeping check of already used letters
         for (let i=0; i<wordToGuess.length; i++){ // check if the letter chosen by the player is in the word, 
-            if (playerLetter == wordToGuess[i]){ // if yes, all the underscores where the letter occurs are replaced by it
+            if (playerLetter === wordToGuess[i]){ // if yes, all the underscores where the letter occurs are replaced by it
                 hiddenWord[i] = playerLetter;
             }
         }
         wordToGuess.includes(playerLetter)? points : points--;
     }
-    i = 0 ;
     return alert(`The password is: ${hiddenWord.join("")}\n\nYou still have ${points} chance(s).`);
 } 
 
